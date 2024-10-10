@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './SelectInput.css'; // Pour personnaliser le style
 
 const SelectInput = ({ label, id, options, value, onChange }) => {
   return (

@@ -116,3 +116,22 @@ button {
   cursor: pointer;
 }
 
+
+.sc-dpBQxM{
+  background-color: #93ad18;
+  color: white;
+}
+
+.current{
+  margin-bottom: 20px;
+}
+
+.search{
+  color: WHITE;
+  align-self: flex-start;
+  background-color: #6e870f;
+  margin-top: 0px;
+  height: 20px;
+  max-width: 180px;
+
+}
