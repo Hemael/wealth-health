@@ -107,20 +107,16 @@ select{
 }
 
 button {
-  background-color: #93ad18;
+  background-color: #6e870f;
   color: white;
   border: none;
-  padding: 5px 20px;
+  padding: 10px 80px;
   margin-top: 10px;
   border-radius: 5px;
   cursor: pointer;
 }
 
 
-.sc-dpBQxM{
-  background-color: #93ad18;
-  color: white;
-}
 
 .current{
   margin-bottom: 20px;
@@ -133,5 +129,31 @@ button {
   margin-top: 0px;
   height: 20px;
   max-width: 180px;
+  margin-bottom: 20px;
+  padding: 10px;
+  width: 100% ;
+}
 
+th, td {
+  text-align: center; /* Centre le texte horizontalement */
+  vertical-align: middle; /* Centre le texte verticalement (si nécessaire) */
+  padding: 10px; /* Optionnel: ajoute de l'espace autour du texte */
+
+}
+
+.buttonNP{
+  padding: 10px 30px;
+  vertical-align: middle;
+  margin-top: 0;
+}
+
+.pagi{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+span{
+  margin-left: 10px;
+  margin-right: 10px;
 }

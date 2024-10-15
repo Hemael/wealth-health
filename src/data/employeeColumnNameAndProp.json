@@ -1,0 +1,16 @@
+[
+    ["firstName", "First name"],
+    ["lastName", "Last name"],
+    ["dateOfBirth", "Date of birth"],
+    ["startDate", "Start date"],
+    ["department", "Department"],
+    ["street", "Street"],
+    ["city", "City"],
+    ["state", "State"],
+    ["zipCode", "Zip code"]
+]
+
+
+
+
+
