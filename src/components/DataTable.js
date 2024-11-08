@@ -1,11 +1,21 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function DataTable({ data, columnNameAndProp }) {
   const [sortedData, setSortedData] = useState(data);
+
+  const [totalPages, setTotalPages] = useState(0);
   const [sortOrder, setSortOrder] = useState(true); // true for ascending, false for descending
   const [activeColumn, setActiveColumn] = useState(null); // Track which column is being sorted
   const [currentPage, setCurrentPage] = useState(1); // Current page for pagination
   const [itemsPerPage, setItemsPerPage] = useState(10); // Number of items per page
+  useEffect(()=>{
+    const data_ = [...data]
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    setTotalPages(Math.ceil(data_.length / itemsPerPage));
+    const currentData = data_.slice(indexOfFirstItem, indexOfLastItem);
+    setSortedData(currentData)
+  },[currentPage, itemsPerPage, data])
 
   // Function to sort the data
   const handleSort = (prop) => {
@@ -33,8 +43,6 @@ function DataTable({ data, columnNameAndProp }) {
     setCurrentPage(1); // Reset to first page when items per page change
   };
 
-  // Pagination controls
-  const totalPages = Math.ceil(sortedData.length / itemsPerPage);
 
   const handlePreviousPage = () => {
     if (currentPage > 1) {
@@ -49,10 +57,7 @@ function DataTable({ data, columnNameAndProp }) {
   };
 
   // Get current items to display based on pagination
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentData = sortedData.slice(indexOfFirstItem, indexOfLastItem);
-
+  
   return (
     <div>
 
@@ -70,7 +75,7 @@ function DataTable({ data, columnNameAndProp }) {
         </thead>
 
         <tbody>
-          {currentData.map((employee, index) => (
+          {sortedData.map((employee, index) => (
             <tr key={index}>
               {columnNameAndProp.map((nameAndProp, index) => (
                 <td key={index}>{employee[nameAndProp[0]]}</td>

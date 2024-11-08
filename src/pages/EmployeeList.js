@@ -15,6 +15,7 @@ const EmployeeList = () => {
 
   // Utilise useEffect pour filtrer les employés lorsque la valeur de search change
   useEffect(() => {
+
     const filteredData = employees.filter((employee) =>
       Object.values(employee)
         .join(' ')

@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom'; // Import de Link
+import { Link } from 'react-router-dom'; 
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import Modal from 'react-modal';
+import CustomModal from 'modal2'; // Remplace par ton package
 import states from '../data/states.json';
 import SelectInput from '../components/SelectInput';
 import wealth from '../img/wealth.png';
-import { addEmployee } from '../service/employeeSlice';
-
-Modal.setAppElement('#root');
 
 const HRnet = () => {
   const [firstName, setFirstName] = useState('');
@@ -23,9 +19,6 @@ const HRnet = () => {
   const [department, setDepartment] = useState('');
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-
-  const dispatch = useDispatch(); // Hook pour dispatcher les actions
-  const employees = useSelector((state) => state.employees.list); // Récupère la liste des employés depuis le store
 
   const departments = [
     { value: 'Sales', label: 'Sales' },
@@ -42,8 +35,6 @@ const HRnet = () => {
 
   const saveEmployee = (e) => {
     e.preventDefault();
-
-    // Validation
     if (
       !firstName || !lastName || !dateOfBirth || !startDate || !street || !city || !state || !zipCode || !department
     ) {
@@ -56,27 +47,19 @@ const HRnet = () => {
       lastName,
       dateOfBirth,
       startDate,
-      address: {
-        street,
-        city,
-        state,
-        zipCode,
-      },
+      address: { street, city, state, zipCode },
       department,
     };
 
-    // Utilise dispatch pour ajouter un employé au store Redux
-    dispatch(addEmployee(newEmployee));
-
+    console.log('New Employee:', newEmployee);
     setModalIsOpen(true);
-    setErrorMessage(''); // Réinitialise le message d'erreur
+    setErrorMessage('');
   };
 
   return (
     <div className="container">
       <div className="title">
         <img src={wealth} alt="HRnet" />
-        {/* Utilisation de Link pour naviguer vers la liste des employés */}
         <Link to="/employee-list">View Current Employees</Link>
       </div>
       <div className="containerA">
@@ -171,14 +154,15 @@ const HRnet = () => {
 
         {errorMessage && <p className="error-message">{errorMessage}</p>}
 
-        <Modal
+        {/* Utilisation de CustomModal */}
+        <CustomModal
           isOpen={modalIsOpen}
           onRequestClose={() => setModalIsOpen(false)}
-          contentLabel="Employee Created"
+          title="Employee Created"
+          buttonText="Close"
         >
-          <h2>Employee Created!</h2>
-          <button onClick={() => setModalIsOpen(false)}>Close</button>
-        </Modal>
+          <p>Employee Created Successfully!</p>
+        </CustomModal>
       </div>
     </div>
   );
